@@ -15,10 +15,12 @@ export const useFetch = (url) => {
         const jsonRes = await response.json();
         setResponse(jsonRes);
       } catch (err) {
+        console.log('error ', err);
         setError(true);
       }
     };
     fetchData();
   }, [url]);
+
   return { response, error };
 };

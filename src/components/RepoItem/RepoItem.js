@@ -13,57 +13,14 @@ import {
   EyeIcon,
 } from '@primer/octicons-react';
 
-import { makeStyles } from '@material-ui/core/styles';
+import { useStyles } from './Style';
 
-const grey = '#586069';
-
-const useStyles = makeStyles({
-  mainContainer: {
-    justifyContent: 'center',
-    marginTop: '4rem',
-    padding: '1rem',
-  },
-  repoTypography: {
-    color: '#0366d6',
-    fontWeight: '700',
-    marginLeft: '5px',
-  },
-  descriptionTypography: {
-    color: grey,
-    fontSize: '0.90rem',
-  },
-  titleContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    marginBottom: '0.35rem',
-  },
-  iconsContainer: {
-    color: grey,
-    display: 'flex',
-    alignItems: 'center',
-    '& p': {
-      marginLeft: '4px',
-      fontWeight: 700,
-    },
-  },
-  linkItem: {
-    textDecoration: 'none',
-    color: 'inherit',
-  },
-});
-
-export const RepoItem = ({
-  repo,
-  showDetails,
-  handleShowSingleRepoDetails,
-}) => {
+export const RepoItem = ({ repo, showDetails }) => {
   const classes = useStyles();
-
   const renderSimpleRepo = () => {
     return (
       <ListItem
         key={repo.id}
-        onClick={() => handleShowSingleRepoDetails(repo.id)}
         to={`${repo.id}`}
         component={LinkRouter}
         className={classes.linkItem}
@@ -77,11 +34,11 @@ export const RepoItem = ({
       </ListItem>
     );
   };
-
+  // console.log('repo item ', repo);
   return (
     <>
-      {repo && !showDetails && renderSimpleRepo()}
-      {repo && showDetails && (
+      {!showDetails && renderSimpleRepo()}
+      {showDetails && (
         <Grid container className={classes.mainContainer}>
           <Grid item style={{ textAlign: 'left' }}>
             <Card>
