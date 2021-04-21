@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const grey = '#586069';
 
-export const useStyles = makeStyles({
+export const useStyles = makeStyles((theme) => ({
   mainContainer: {
     justifyContent: 'center',
     marginTop: '4rem',
@@ -35,4 +35,4 @@ export const useStyles = makeStyles({
     textDecoration: 'none',
     color: 'inherit',
   },
-});
+}));

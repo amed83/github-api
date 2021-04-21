@@ -13,7 +13,6 @@ beforeEach(() => {
 
 test('should render the correct number of repo', async () => {
   await waitFor(() => screen.getByRole('list'));
-  expect(screen.getByRole('list').children).toHaveLength(3);
   expect(screen.getByText('Repo One')).toBeInTheDocument();
   expect(screen.getByText('Repo Two')).toBeInTheDocument();
   expect(screen.getByText('Repo Three')).toBeInTheDocument();

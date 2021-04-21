@@ -5,6 +5,7 @@ import { Link as LinkRouter } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import ListItem from '@material-ui/core/ListItem';
+import Divider from '@material-ui/core/Divider';
 
 import {
   RepoIcon,
@@ -19,22 +20,26 @@ export const RepoItem = ({ repo, showDetails }) => {
   const classes = useStyles();
   const renderSimpleRepo = () => {
     return (
-      <ListItem
-        key={repo.id}
-        to={`${repo.id}`}
-        component={LinkRouter}
-        className={classes.linkItem}
-      >
-        <div className={classes.titleContainer}>
-          <RepoIcon verticalAlign='middle' fill='#586069' />
-          <Typography className={classes.repoTypography}>
-            {repo.name}
-          </Typography>
-        </div>
-      </ListItem>
+      <>
+        <ListItem
+          button
+          key={repo.id}
+          to={`${repo.id}`}
+          component={LinkRouter}
+          className={classes.linkItem}
+        >
+          <div className={classes.titleContainer}>
+            <RepoIcon verticalAlign='middle' fill='#586069' />
+            <Typography className={classes.repoTypography}>
+              {repo.name}
+            </Typography>
+          </div>
+        </ListItem>
+        <Divider />
+      </>
     );
   };
-  // console.log('repo item ', repo);
+
   return (
     <>
       {!showDetails && renderSimpleRepo()}
