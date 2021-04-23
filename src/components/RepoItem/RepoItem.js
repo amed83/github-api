@@ -18,86 +18,81 @@ import { useStyles } from './Style';
 
 export const RepoItem = ({ repo, showDetails }) => {
   const classes = useStyles();
-  const renderSimpleRepo = () => {
-    return (
-      <>
-        <ListItem
-          button
-          key={repo.id}
-          to={`${repo.id}`}
-          component={LinkRouter}
-          className={classes.linkItem}
-        >
-          <div className={classes.titleContainer}>
-            <RepoIcon verticalAlign='middle' fill='#586069' />
-            <Typography className={classes.repoTypography}>
-              {repo.name}
-            </Typography>
-          </div>
-        </ListItem>
-        <Divider />
-      </>
-    );
-  };
-
   return (
     <>
-      {!showDetails && renderSimpleRepo()}
-      {showDetails && (
+      {!showDetails ? (
+        <>
+          <ListItem
+            button
+            key={repo.id}
+            to={`${repo.id}`}
+            component={LinkRouter}
+            className={classes.linkItem}
+          >
+            <div className={classes.titleContainer}>
+              <RepoIcon verticalAlign='middle' fill='#586069' />
+              <Typography className={classes.repoTypography}>
+                {repo.name}
+              </Typography>
+            </div>
+          </ListItem>
+          <Divider />
+        </>
+      ) : (
         <Grid container className={classes.mainContainer}>
-          {/* <Grid item style={{ textAlign: 'left' }}> */}
-          <Card>
-            <CardContent>
-              <div className={classes.titleContainer}>
-                <RepoIcon verticalAlign='middle' fill='#586069' />
-                <Typography className={classes.repoTypography}>
-                  {repo.name}
-                </Typography>
-              </div>
-              <Typography
-                className={classes.descriptionTypography}
-                gutterBottom
-              >
-                {repo.description}
-              </Typography>
-              <Typography gutterBottom style={{ wordBreak: 'break-all' }}>
-                <Link href={repo.html_url}>{repo.html_url}</Link>
-              </Typography>
-
-              <Grid container spacing={3}>
-                <Grid
-                  item
-                  className={classes.iconsContainer}
-                  data-testid='fork-icon'
-                >
-                  <RepoForkedIcon />
-                  <Typography>{repo.forks}</Typography>
-                </Grid>
-                <Grid
-                  item
-                  className={classes.iconsContainer}
-                  data-testid='issues-icon'
-                >
-                  <IssueOpenedIcon />
-                  <Typography>{repo.open_issues}</Typography>
-                </Grid>
-                <Grid
-                  item
-                  className={classes.iconsContainer}
-                  data-testid='watchers-icon'
-                >
-                  <EyeIcon />
-                  <Typography>{repo.watchers}</Typography>
-                </Grid>
-                <Grid item>
-                  <Typography>
-                    <strong>Language:</strong> {repo.language}
+          <Grid item>
+            <Card>
+              <CardContent>
+                <div className={classes.titleContainer}>
+                  <RepoIcon verticalAlign='middle' fill='#586069' />
+                  <Typography className={classes.repoTypography}>
+                    {repo.name}
                   </Typography>
+                </div>
+                <Typography
+                  className={classes.descriptionTypography}
+                  gutterBottom
+                >
+                  {repo.description}
+                </Typography>
+                <Typography gutterBottom style={{ wordBreak: 'break-all' }}>
+                  <Link href={repo.html_url}>{repo.html_url}</Link>
+                </Typography>
+
+                <Grid container spacing={3}>
+                  <Grid
+                    item
+                    className={classes.iconsContainer}
+                    data-testid='fork-icon'
+                  >
+                    <RepoForkedIcon />
+                    <Typography>{repo.forks}</Typography>
+                  </Grid>
+                  <Grid
+                    item
+                    className={classes.iconsContainer}
+                    data-testid='issues-icon'
+                  >
+                    <IssueOpenedIcon />
+                    <Typography>{repo.open_issues}</Typography>
+                  </Grid>
+                  <Grid
+                    item
+                    className={classes.iconsContainer}
+                    data-testid='watchers-icon'
+                  >
+                    <EyeIcon />
+                    <Typography>{repo.watchers}</Typography>
+                  </Grid>
+                  <Grid item>
+                    <Typography>
+                      <strong>Language:</strong> {repo.language}
+                    </Typography>
+                  </Grid>
                 </Grid>
-              </Grid>
-            </CardContent>
-          </Card>
-          {/* </Grid> */}
+              </CardContent>
+            </Card>
+          </Grid>
         </Grid>
       )}
     </>
